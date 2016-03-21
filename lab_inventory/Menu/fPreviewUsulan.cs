@@ -399,13 +399,36 @@ namespace lab_inventory.Menu
             foreach (ListViewItem item in lvDetail.Items)
             {
                 maxIdMutasi++;
-                _sqlQuery = "insert into lab_inventory.mutasi (id, tglMutasi, sisa, mutasi, status, idBarang, " +
-                            "idUser, idJurusan, idDetUsulan) values (" + maxIdMutasi + ", NOW(), 0, " +
-                            Convert.ToInt16(item.SubItems[2].Text) + ", 1, " +
-                            Convert.ToInt16(item.SubItems[5].Text) + ", " + fUtama.IdUser + ", " +
-                            _idJurusanMutasi + ", " + Convert.ToInt16(item.SubItems[6].Text) + ")";
-                _connect.Insertion(_sqlQuery, _connection, sqLiteTransaction, ref errMsg);
+                //_sqlQuery = "insert into lab_inventory.mutasi (id, tglMutasi, sisa, mutasi, status, idBarang, " +
+                //            "idUser, idJurusan, idDetUsulan) values (" + maxIdMutasi + ", NOW(), 0, " +
+                //            Convert.ToInt16(item.SubItems[2].Text) + ", 1, " +
+                //            Convert.ToInt16(item.SubItems[5].Text) + ", " + fUtama.IdUser + ", " +
+                //            _idJurusanMutasi + ", " + Convert.ToInt16(item.SubItems[6].Text) + ")";
+                //_connect.Insertion(_sqlQuery, _connection, sqLiteTransaction, ref errMsg);
+                _sqlQuery = "insert into lab_inventory.mutasi (\n" +
+                            "id, \n" +
+                            "tglMutasi, \n" +
+                            "mutasi, \n" +
+                            "status, \n" +
+                            "idBarang, \n" +
+                            "idUser, \n" +
+                            "idJurusan, \n" +
+                            "idDetUsulan, \n" +
+                            "sisa) \n" +
+                            "select \n" +
+                            "" + maxIdMutasi + ", \n" + // id
+                            "NOW(), \n" + // tgl
+                            "" + Convert.ToInt16(item.SubItems[2].Text) + ", \n" + // mutasi
+                            "1, \n" + // status
+                            "" + Convert.ToInt16(item.SubItems[5].Text) + ", \n" + // idbarang
+                            "" + fUtama.IdUser + ", \n" + // iduser
+                            "" + _idJurusanMutasi + ", \n" + // idjurusan
+                            "" + Convert.ToInt16(item.SubItems[6].Text) + ", \n" + // iddetusulan
+                            "" + Convert.ToInt16(item.SubItems[2].Text) +
+                            " + IFNULL((select sisa from mutasi where idBarang = '" +
+                            Convert.ToInt16(item.SubItems[5].Text) + "' ORDER BY tglMutasi DESC limit 1),0);"; // sisa
                 //int negInt = -System.Math.Abs(myInt) -> convert to negative value
+                _connect.Insertion(_sqlQuery, _connection, sqLiteTransaction, ref errMsg);
             }
 
             if (!string.IsNullOrEmpty(errMsg))

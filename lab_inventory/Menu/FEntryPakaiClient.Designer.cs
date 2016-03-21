@@ -114,7 +114,7 @@
             this.label1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(218, 20);
+            this.label1.Size = new System.Drawing.Size(216, 20);
             this.label1.TabIndex = 1;
             this.label1.Text = "DAFTAR BARANG HABIS PAKAI";
             // 
@@ -216,7 +216,7 @@
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(3, 103);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(81, 20);
+            this.label6.Size = new System.Drawing.Size(80, 20);
             this.label6.TabIndex = 4;
             this.label6.Text = "Pemakaian";
             // 

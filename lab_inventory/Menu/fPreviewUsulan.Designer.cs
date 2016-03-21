@@ -280,7 +280,7 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(3, 33);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(56, 20);
+            this.label4.Size = new System.Drawing.Size(54, 20);
             this.label4.TabIndex = 1;
             this.label4.Text = "Tahun :";
             // 
